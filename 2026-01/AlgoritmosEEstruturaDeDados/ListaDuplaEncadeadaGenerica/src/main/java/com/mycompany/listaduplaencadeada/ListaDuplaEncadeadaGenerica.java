@@ -31,7 +31,15 @@ public class ListaDuplaEncadeadaGenerica<T> {
         primeiro = novo;
     }
     
-    public NoListaDupla<T> buscar(T valor){
+    public NoListaDupla<T> buscar(T valor) {
+        NoListaDupla<T> p = primeiro;
+        while (p != null) {
+            if (p.getInfo().equals(valor)) {
+                return p;
+            }
+
+            p = p.getProximo();
+        }
         return null;
     }
     
@@ -42,7 +50,7 @@ public class ListaDuplaEncadeadaGenerica<T> {
             if (primeiro.equals(p)){
                 primeiro = p.getProximo();
             } else {
-                p.getAnterior().setProximo(p.getAnterior());
+                p.getAnterior().setProximo(p.getProximo());
             }
             if (p.getProximo() != null){
                 p.getProximo().setAnterior(p.getAnterior());
@@ -50,15 +58,45 @@ public class ListaDuplaEncadeadaGenerica<T> {
         }
     }
     
-    public void exibirOrdemInversa(){
-        
+    public void exibirOrdemInversa() {
+        NoListaDupla<T> atual = primeiro;
+        if (atual == null) {
+            return;
+        }
+
+        while (atual.getProximo() != null) {
+            atual = atual.getProximo();
+        }
+
+        while (atual != null) {
+            System.out.print(atual.getInfo() + " ");
+            atual = atual.getAnterior();
+        }
+        System.out.println();
+
     }
     
-    public void liberar(){
-        
+     public void liberar() {
+        NoListaDupla<T> atual = primeiro;
+        while (atual != null) {
+            NoListaDupla<T> proximo = atual.getProximo();
+            atual.setAnterior(null);
+            atual.setProximo(null);
+            atual = proximo;
+        }
+        primeiro = null;
     }
-    
-    public String toString(){
-        return null;
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        NoListaDupla<T> atual = primeiro;
+        while (atual != null) {
+            sb.append(atual.getInfo());
+            if (atual.getProximo() != null) {
+                sb.append(", ");
+            }
+            atual = atual.getProximo();
+        }
+        return sb.toString();
     }
 }
