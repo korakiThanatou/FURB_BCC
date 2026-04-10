@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.pilhasgenericas;
+package com.mycompany.PilhasGenericas;
 
 /**
  *
@@ -108,6 +108,35 @@ public class TestePilhaVetor {
 
         System.out.println("Esperado: 50,40,30,20,10");
         System.out.println("Resultado: " + p1.toString());
+
+        // caso extra
+        System.out.println("\nTeste concatenar várias");
+
+        PilhaVetor<Integer> p3 = new PilhaVetor<>(20);
+        p3.push(10);
+        p3.push(20);
+
+        PilhaVetor<Integer> p4 = new PilhaVetor<>(20);
+        p4.push(30);
+        p4.push(40);
+
+        PilhaVetor<Integer> p5 = new PilhaVetor<>(20);
+        p5.push(50);
+        p5.push(60);
+
+// concatenação múltipla
+        p3.concatenarVarias(p4, p5);
+
+        System.out.println("Esperado: 60,50,40,30,20,10");
+        System.out.println("Resultado: " + p3);
+
+        System.out.println("\nVerificando pilhas originais:");
+
+        System.out.println("P4 esperado: 40,30");
+        System.out.println("P4 resultado: " + p4);
+
+        System.out.println("P5 esperado: 60,50");
+        System.out.println("P5 resultado: " + p5);
     }
 
 }

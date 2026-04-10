@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.pilhasgenericas;
+package com.mycompany.PilhasGenericas;
 
 /**
  *
@@ -16,7 +16,7 @@ public class PilhaVetor<T> implements Pilha<T> {
 
     public PilhaVetor(int limite) {
         System.out.println("- metodo construtor acionado");
-        this.info = (T[]) new Object[limite];
+        this.info = new Object[limite];
         this.limite = limite;
         this.tamanho = 0;
     }
@@ -52,7 +52,7 @@ public class PilhaVetor<T> implements Pilha<T> {
     }
 
     public void liberar() {
-        System.out.println("- metodo estaVazia acionado");
+        System.out.println("- metodo liberar acionado");
         T[] novo = (T[]) new Object[limite];
         info = novo;
         tamanho = 0;
@@ -82,7 +82,7 @@ public class PilhaVetor<T> implements Pilha<T> {
         }
 
         // pilha auxiliar pra não perder dados de p
-        PilhaVetor<T> aux = new PilhaVetor<>(p.limite);
+        PilhaVetor<T> aux = new PilhaVetor<>(p.tamanho);
 
         // passo 1: inverter p em aux
         while (!p.estaVazia()) {
@@ -95,6 +95,22 @@ public class PilhaVetor<T> implements Pilha<T> {
             T valor = aux.pop();
             p.push(valor);     // restaura p
             this.push(valor);  // adiciona na atual
+        }
+    }
+
+    public void concatenarVarias(PilhaVetor<T>... pilhas) {
+        int total = this.tamanho;
+
+        for (PilhaVetor<T> p : pilhas) {
+            total += p.tamanho;
+        }
+
+        if (total > this.limite) {
+            throw new RuntimeException("Capacidade insuficiente");
+        }
+
+        for (PilhaVetor<T> p : pilhas) {
+            this.concatenar(p);
         }
     }
 }
