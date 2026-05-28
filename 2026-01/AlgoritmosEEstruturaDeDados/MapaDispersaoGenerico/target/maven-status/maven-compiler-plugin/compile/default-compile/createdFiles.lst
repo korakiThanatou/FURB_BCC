@@ -1,0 +1,6 @@
+com\mycompany\mapadispersaogenerico\MapaDispersao.class
+com\mycompany\mapadispersaogenerico\NoMapa.class
+com\mycompany\mapadispersaogenerico\NoLista.class
+com\mycompany\mapadispersaogenerico\Aluno.class
+com\mycompany\mapadispersaogenerico\ListaSimplesmenteEncadeadaGenerica.class
+com\mycompany\mapadispersaogenerico\TesteMapaDispersao.class
